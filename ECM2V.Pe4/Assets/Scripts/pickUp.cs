@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
@@ -17,21 +18,21 @@ public class pickUp : MonoBehaviour
     public GameObject lastSelectedItem;
     public GameObject pickedUpItem;
 
+    public Transform environment;
+
     public Transform pickUpPoint;
 
     public Color originalColor;
     public Color highlightedColor = Color.cyan;
 
-    LayerMask logs;
-    LayerMask rocks;
+    LayerMask item;
 
     RaycastHit hit;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        logs = LayerMask.NameToLayer("Log");
-        rocks = LayerMask.NameToLayer("Rock");
+        item = LayerMask.NameToLayer("item");
     }
 
  
@@ -61,7 +62,7 @@ public class pickUp : MonoBehaviour
         {
             selectedItem = hit.collider.gameObject;
 
-            if (hit.transform.gameObject.layer == logs)
+            if (hit.transform.gameObject.layer == item)
             {
                 if (isItemSelected == false)
                 {
@@ -105,7 +106,7 @@ public class pickUp : MonoBehaviour
 
     void PickUp()
     {
-        if (selectedItem != null)
+        if (selectedItem != null && pickedUpItem == null)
         {
             Rigidbody itemRigidBody = selectedItem.GetComponent<Rigidbody>();
             if (itemRigidBody != null)
@@ -120,16 +121,20 @@ public class pickUp : MonoBehaviour
             selectedItem.transform.SetParent(pickUpPoint);
 
             pickedUpItem = selectedItem;
+            selectedItem = null;
         }
     }
     
-
         void Drop()
         {
-        pickedUpItem.GetComponent<Rigidbody>().useGravity = true;
-        pickedUpItem.GetComponent<Rigidbody>().isKinematic = false;
-        pickedUpItem.transform.parent = null;
-        pickedUpItem = null;
-    }
+            if (pickedUpItem != null)
+            {
+                pickedUpItem.GetComponent<Rigidbody>().useGravity = true;
+                pickedUpItem.GetComponent<Rigidbody>().isKinematic = false;
+                pickedUpItem.transform.SetParent(environment);
+                pickedUpItem.transform.parent = null;
+                pickedUpItem = null;
+            }
+        }
     
 }
