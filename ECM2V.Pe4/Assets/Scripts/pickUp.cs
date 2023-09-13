@@ -9,8 +9,7 @@ public class pickUp : MonoBehaviour
 {
     public Camera rayCamera;
 
-    public float rayDistance =3f;
-    public float distance;
+    public float rayDistance;
 
     bool isItemSelected = false;
 
@@ -21,7 +20,7 @@ public class pickUp : MonoBehaviour
     public Transform environment;
 
     public Transform pickUpPoint;
-    //public Transform fireBlueprint;
+    public Transform fireBlueprint;
 
     public Color originalColor;
     public Color highlightedColor = Color.cyan;
@@ -42,28 +41,7 @@ public class pickUp : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PickUp();
-        }
 
-        if (Input.GetKeyDown("escape"))
-        {
-            Cursor.visible = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.G)) 
-        {
-            Drop();
-        }
-
-        //fireBlueprint.position = new Vector3(hit.point.x, 0, hit.point.z);
-        //fireBlueprint.localPosition = new Vector3(fireBlueprint.position.x, 0, fireBlueprint.position.z);
-        //fireBlueprint.rotation = Quaternion.identity;
-    }
-
-    void FixedUpdate()
-    {
         Ray ray = rayCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, rayDistance) && hit.collider.tag == "Item")
@@ -110,27 +88,74 @@ public class pickUp : MonoBehaviour
             isItemSelected = false;
             lastSelectedItem = null;
         }
+
+        /*if (Input.GetKeyDown(KeyCode.E))
+        {
+            PickUp();
+        }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Cursor.visible = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)) 
+        {
+            Drop();
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (selectedItem != null && pickedUpItem == null)
+            {
+                PickUp();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (pickedUpItem != null && selectedItem != lastSelectedItem)
+            {
+                Drop();
+            }
+        }
+
+        /*fireBlueprint.position = new Vector3(hit.point.x, 0, hit.point.z);
+        fireBlueprint.rotation = Quaternion.identity;*/
     }
 
-    void PickUp()
+    void FixedUpdate()
     {
-        if (selectedItem != null && pickedUpItem == null)
-        {
-            Rigidbody itemRigidBody = selectedItem.GetComponent<Rigidbody>();
-            if (itemRigidBody != null)
-            {
-                itemRigidBody.useGravity = false;
-                itemRigidBody.isKinematic = true;
-            }
+        
+    }
 
-            selectedItem.transform.position = pickUpPoint.position;
-            selectedItem.transform.rotation = pickUpPoint.rotation;
+    /*void PickUp()
+    {
+        *//* if (selectedItem != null && pickedUpItem == null)
+         {
+             Rigidbody itemRigidBody = selectedItem.GetComponent<Rigidbody>();
+             if (itemRigidBody != null)
+             {
+                 itemRigidBody.useGravity = false;
+                 itemRigidBody.isKinematic = true;
+             }
 
-            selectedItem.transform.SetParent(pickUpPoint);
+             selectedItem.transform.position = pickUpPoint.position;
+             selectedItem.transform.rotation = pickUpPoint.rotation;
 
-            pickedUpItem = selectedItem;
-            selectedItem = null;
-        }
+             selectedItem.transform.SetParent(pickUpPoint);
+
+             pickedUpItem = selectedItem;
+             selectedItem = null;
+         }*//*
+
+        selectedItem.GetComponent<Rigidbody>().useGravity = false;
+        selectedItem.GetComponent<Rigidbody>().isKinematic = true;
+        selectedItem.transform.position = Vector3.zero;
+        selectedItem.transform.rotation = Quaternion.identity;
+        selectedItem.transform.SetParent(pickUpPoint, false);
+
+        pickedUpItem = selectedItem;
     }
     
         void Drop()
@@ -143,6 +168,25 @@ public class pickUp : MonoBehaviour
                 pickedUpItem.transform.parent = null;
                 pickedUpItem = null;
             }
-        }
-    
+        }*/
+
+    void PickUp()
+    {
+        selectedItem.GetComponent<Rigidbody>().useGravity = false;
+        selectedItem.GetComponent<Rigidbody>().isKinematic = true;
+        selectedItem.transform.position = Vector3.zero;
+        selectedItem.transform.rotation = Quaternion.identity;
+        selectedItem.transform.SetParent(pickUpPoint, false);
+
+        pickedUpItem = selectedItem;
+    }
+
+    void Drop()
+    {
+        pickedUpItem.GetComponent<Rigidbody>().useGravity = true;
+        pickedUpItem.GetComponent<Rigidbody>().isKinematic = false;
+        pickedUpItem.transform.parent = null;
+        pickedUpItem = null;
+    }
+
 }
