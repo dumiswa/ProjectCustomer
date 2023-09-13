@@ -171,15 +171,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.51
+      value: -3.41
       objectReference: {fileID: 0}
     - target: {fileID: 602377564380197421, guid: e44dc2c8ad3250d49bfbd5ee9ccf0d22, type: 3}
       propertyPath: m_LocalRotation.w
@@ -595,7 +595,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1191310784}
   m_Father: {fileID: 1776363375}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -863,13 +864,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191310783}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: 0.61, z: 1.13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.92, y: 0.068, z: 0.245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1614913746}
-  m_RootOrder: 3
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251399686
 GameObject:
@@ -1164,7 +1165,6 @@ Transform:
   - {fileID: 160836261}
   - {fileID: 971165646}
   - {fileID: 8070653}
-  - {fileID: 1191310784}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   selectedItem: {fileID: 0}
   lastSelectedItem: {fileID: 0}
   pickedUpItem: {fileID: 0}
-  environment: {fileID: 0}
+  environment: {fileID: 2137704733}
   pickUpPoint: {fileID: 1191310784}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   highlightedColor: {r: 0, g: 1, b: 1, a: 1}

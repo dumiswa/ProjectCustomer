@@ -21,6 +21,7 @@ public class pickUp : MonoBehaviour
     public Transform environment;
 
     public Transform pickUpPoint;
+    //public Transform fireBlueprint;
 
     public Color originalColor;
     public Color highlightedColor = Color.cyan;
@@ -32,10 +33,13 @@ public class pickUp : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
         item = LayerMask.NameToLayer("item");
+
+        
     }
 
- 
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -52,6 +56,10 @@ public class pickUp : MonoBehaviour
         {
             Drop();
         }
+
+        //fireBlueprint.position = new Vector3(hit.point.x, 0, hit.point.z);
+        //fireBlueprint.localPosition = new Vector3(fireBlueprint.position.x, 0, fireBlueprint.position.z);
+        //fireBlueprint.rotation = Quaternion.identity;
     }
 
     void FixedUpdate()
