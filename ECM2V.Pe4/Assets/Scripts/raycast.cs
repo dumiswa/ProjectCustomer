@@ -6,7 +6,7 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class raycast : MonoBehaviour
 {
-    public float maxDistance = 10f;
+    public float maxDistance = 3f;
     public GameObject selectedItem;
     public GameObject lastSelectedItem;
 
@@ -25,48 +25,42 @@ public class raycast : MonoBehaviour
     public Color originalColor;
     public Color highlightedColor = Color.yellow;
 
-
-
-     void Start()
-    {
+  
+    void Start()
+    {     
         itemLayerMask = LayerMask.NameToLayer("Item");
         groundLayerMask = LayerMask.NameToLayer("whatIsGround");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
             if (selectedItem != null && pickedUpItem == null)
             {
                 PickUp();
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-
-            if (pickedUpItem != null /*&& selectedItem != lastSelectedItem*/)
+            if (pickedUpItem != null && selectedItem != lastSelectedItem)
             {
                 Drop();
             }
-
         }
-
-
     }
 
     void FixedUpdate()
     {
-        Ray rayCast = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0f));
-        
+        Ray rayCast = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 3f));
+
         //bool raycastHit = Physics.Raycast(rayCast, out hitInfo, maxDistance, itemLayerMask);
         bool raycastHit = Physics.Raycast(rayCast, out hitInfo, maxDistance);
 
-       // fireBlueprint.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
-       //fireBlueprint.localPosition = new Vector3(fireBlueprint.position.x, -0.5f, fireBlueprint.position.z);
-       // fireBlueprint.rotation = Quaternion.identity;
+        //fireBlueprint.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+        //fireBlueprint.localPosition = new Vector3(fireBlueprint.position.x, -0.5f, fireBlueprint.position.z);
+        //fireBlueprint.rotation = Quaternion.identity;
 
         if (raycastHit)
         {
@@ -96,7 +90,6 @@ public class raycast : MonoBehaviour
 
                 //fireBlueprint.position = new Vector3(0, transform.position.y - 0.5f, transform.position.z + 3);
             }
-
         }
 
         else if (!raycastHit && selectedItem != null)
@@ -105,9 +98,6 @@ public class raycast : MonoBehaviour
             isItemSelected = false;
             selectedItem = null;
         }
-
-
-
     }
 
     void PickUp()
@@ -121,7 +111,7 @@ public class raycast : MonoBehaviour
         pickedUpItem = selectedItem;
     }
 
-    void Drop() 
+    void Drop()
     {
         pickedUpItem.GetComponent<Rigidbody>().useGravity = true;
         pickedUpItem.GetComponent<Rigidbody>().isKinematic = false;

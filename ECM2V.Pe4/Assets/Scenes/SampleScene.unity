@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 930884338}
   m_Layer: 8
   m_Name: Logs
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,8 +684,8 @@ GameObject:
   - component: {fileID: 1035814615}
   - component: {fileID: 1035814614}
   m_Layer: 8
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Rock
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -905,8 +905,8 @@ GameObject:
   - component: {fileID: 1251399688}
   - component: {fileID: 1251399691}
   m_Layer: 8
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Log
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1161,6 +1161,7 @@ GameObject:
   - component: {fileID: 1614913748}
   - component: {fileID: 1614913747}
   - component: {fileID: 1614913749}
+  - component: {fileID: 1614913750}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1238,7 +1239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614913745}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad80870b63e9804981ede5e1052ca78, type: 3}
   m_Name: 
@@ -1251,6 +1252,27 @@ MonoBehaviour:
   fireBlueprint: {fileID: 966235714}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   highlightedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!114 &1614913750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614913745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e66ac49dda604648ad3148955474c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCamera: {fileID: 963194227}
+  rayDistance: 3
+  distance: 0
+  selectedItem: {fileID: 0}
+  lastSelectedItem: {fileID: 0}
+  pickedUpItem: {fileID: 0}
+  pickUpPoint: {fileID: 1191310784}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightedColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1628871163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,7 +1428,7 @@ GameObject:
   - component: {fileID: 1827975986}
   m_Layer: 8
   m_Name: Rocks
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
